@@ -1,20 +1,24 @@
+"use client";
+
+import TableComponent from "@/components/tableComponent";
 import { Button } from "@mui/material";
-
 import React, { useState, useEffect } from "react";
-import TableComponent from "./components/tableComponent";
-import AddExpenses from "./components/AddTaskModal";
 
-interface T {
-  id: string;
-  title: string;
-  amount: string;
-  source: string;
-}
+// import React, { useState, useEffect } from "react";
+// import TableComponent from "./components/tableComponent";
+// import AddExpenses from "./components/AddTaskModal";
+
+// interface T {
+//   id: string;
+//   title: string;
+//   amount: string;
+//   source: string;
+// }
 function App() {
   const [open, setOpen] = useState<boolean>(false);
   const [refetch, setRefetch] = useState<boolean>(false);
   const [rows, setRows] = useState<Array<T>>([]);
-  const [expensesInputs, setExpensesInputs] = useState<T>({});
+  const [tasks, setTasks] = useState<T>({});
 
   const Tableheadings = [
     { label: "S/N" },
@@ -38,9 +42,9 @@ function App() {
     setOpen(true);
     const item = rows.find((row) => row.id === id);
     if (item) {
-      setExpensesInputs(item);
+      setTasks(item);
     } else {
-      setExpensesInputs({});
+      setTasks({});
     }
   };
 
@@ -60,8 +64,8 @@ function App() {
 
         <div className="w-1/2 justify-center flex ">
           <img
-            src="/expenses.png"
-            alt="expenses image"
+            src="/images/tasks.jpeg"
+            alt="tasks image"
             height={150}
             width={150}
             className="rounded-md"
@@ -74,9 +78,9 @@ function App() {
 
         <Button
           sx={{ backgroundColor: "#272934", color: "#fff4a3" }}
-          onClick={() => setOpen(true)}
+          // onClick={() => setOpen(true)}
         >
-          Add Expenses
+          Add Tasks
         </Button>
       </div>
       <div className="w-full">
@@ -89,7 +93,7 @@ function App() {
         />
       </div>
 
-      {open && (
+      {/* {open && (
         <AddExpenses
           open={open}
           handleClose={handleClose}
@@ -97,7 +101,7 @@ function App() {
           setExpensesInputs={setExpensesInputs}
           expensesInputs={expensesInputs}
         />
-      )}
+      )} */}
     </div>
   );
 }

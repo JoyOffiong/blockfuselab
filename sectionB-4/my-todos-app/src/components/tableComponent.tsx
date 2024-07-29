@@ -9,9 +9,9 @@ import { Edit, Trash } from "lucide-react";
 
 interface T {
   id: string;
-  title: string;
-  amount: string;
-  source: string;
+  task: string;
+  time: string;
+  status: string;
 }
 
 interface H {
@@ -48,7 +48,7 @@ export default function TableComponent({
         </TableHead>
         <TableBody>
           {rows.map((row, index) => {
-            const { id, title, amount, source } = row;
+            const { id, task, time, status } = row;
             return (
               <TableRow
                 key={index}
@@ -57,9 +57,9 @@ export default function TableComponent({
                 <TableCell align="right" size={"small"}>
                   {index + 1}
                 </TableCell>
-                <TableCell align="right">{title}</TableCell>
-                <TableCell align="right">{amount}</TableCell>
-                <TableCell align="right">{source}</TableCell>
+                <TableCell align="right">{task}</TableCell>
+                <TableCell align="right">{time}</TableCell>
+                <TableCell align="right">{status}</TableCell>
                 <TableCell
                   align="right"
                   className="flex justify-end gap-2 items-center flex-row"

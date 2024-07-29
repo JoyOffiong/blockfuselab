@@ -2,6 +2,8 @@ import { Modal, Box, Button } from "@mui/material";
 
 import { v4 as uuidv4 } from "uuid";
 import { useForm } from "react-hook-form";
+import InputBoxComp from "./inputField";
+import style from "./style";
 
 type Props = {
   open: boolean;
@@ -18,19 +20,19 @@ type Props = {
 
 interface IData {
   id: string;
-  title: string;
-  amount: string;
-  source: string;
-  index?: number;
+  task: string;
+  time: string;
+  status: string;
+  Action?: number;
 }
-function AddExpenses({
+function AddTasks({
   open,
   handleClose,
   setExpensesInputs,
   expensesInputs,
   setRefetch,
 }: Props) {
-  const { control, handleSubmit, reset } = useForm({
+  const { control, handleSubmit } = useForm({
     mode: "onChange",
     defaultValues: {
       amount: expensesInputs.amount,
@@ -85,26 +87,26 @@ function AddExpenses({
             <div className="flex flex-col gap-6">
               <div>
                 <InputBoxComp
-                  name="title"
+                  name="task"
                   control={control}
                   type="text"
-                  label="Title"
+                  label="Task"
                 />
               </div>
               <div>
                 <InputBoxComp
-                  name="amount"
+                  name="time"
                   control={control}
                   type="text"
-                  label="Amount"
+                  label="Time"
                 />
               </div>
               <div>
                 <InputBoxComp
-                  name="source"
+                  name="status"
                   control={control}
                   type="text"
-                  label="Source"
+                  label="Status"
                 />
               </div>
               <div className="flex flex-end justify-end">
@@ -120,4 +122,4 @@ function AddExpenses({
   );
 }
 
-export default AddExpenses;
+export default AddTasks;
