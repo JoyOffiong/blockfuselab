@@ -57,7 +57,7 @@ function AddTasks({ open, handleClose, setTasks, tasks, setRefetch }: Props) {
     const newId = uuidv4();
     const newData = { ...data, id: newId, index: newIndex };
     info.push(newData);
-    localStorage.setItem("expenses", JSON.stringify(info));
+    localStorage.setItem("tasks", JSON.stringify(info));
     setTasks({});
     handleClose();
     setRefetch(true);
@@ -72,7 +72,7 @@ function AddTasks({ open, handleClose, setTasks, tasks, setRefetch }: Props) {
       >
         <Box sx={style}>
           <p className="text-secondary font-semibold mb-10">
-            {tasks.id ? "Update Expenses" : "Add Expenses"}
+            {tasks.id ? "Update Tasks" : "Add Tasks"}
           </p>
 
           <form onSubmit={handleSubmit(submit)}>
