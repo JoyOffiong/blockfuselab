@@ -8,9 +8,9 @@ import style from "./style";
 type Props = {
   open: boolean;
   handleClose: () => void;
-  setExpensesInputs: ({}) => void;
+  setTasks: ({}) => void;
   setRefetch: (value: boolean) => void;
-  expensesInputs: {
+  tasks: {
     title: string;
     id: string;
     amount: string;
@@ -25,37 +25,29 @@ interface IData {
   status: string;
   Action?: number;
 }
-function AddTasks({
-  open,
-  handleClose,
-  setExpensesInputs,
-  expensesInputs,
-  setRefetch,
-}: Props) {
+function AddTasks({ open, handleClose, setTasks, tasks, setRefetch }: Props) {
   const { control, handleSubmit } = useForm({
     mode: "onChange",
     defaultValues: {
-      amount: expensesInputs.amount,
-      source: expensesInputs.source,
-      title: expensesInputs.title,
-      id: expensesInputs.id,
+      amount: tasks.amount,
+      source: tasks.source,
+      title: tasks.title,
+      id: tasks.id,
     },
   });
 
   const submit = (data: Omit<IData, "id">) => {
     const info = JSON.parse(localStorage.getItem("expenses") || "[]");
-    if (expensesInputs.id) {
-      const updateThis = info?.findIndex(
-        (row: IData) => row.id === expensesInputs.id
-      );
+    if (tasks.id) {
+      const updateThis = info?.findIndex((row: IData) => row.id === tasks.id);
       if (updateThis !== -1) {
         info[updateThis] = {
           ...data,
-          id: expensesInputs.id,
+          id: tasks.id,
           index: info[updateThis].index,
         };
         localStorage.setItem("expenses", JSON.stringify(info));
-        setExpensesInputs({});
+        setTasks({});
         handleClose();
         setRefetch(true);
         return;
@@ -66,7 +58,7 @@ function AddTasks({
     const newData = { ...data, id: newId, index: newIndex };
     info.push(newData);
     localStorage.setItem("expenses", JSON.stringify(info));
-    setExpensesInputs({});
+    setTasks({});
     handleClose();
     setRefetch(true);
   };
@@ -80,7 +72,7 @@ function AddTasks({
       >
         <Box sx={style}>
           <p className="text-secondary font-semibold mb-10">
-            {expensesInputs.id ? "Update Expenses" : "Add Expenses"}
+            {tasks.id ? "Update Expenses" : "Add Expenses"}
           </p>
 
           <form onSubmit={handleSubmit(submit)}>
@@ -111,7 +103,7 @@ function AddTasks({
               </div>
               <div className="flex flex-end justify-end">
                 <Button type="submit" className="bg-secondary text-lightBrown">
-                  {expensesInputs.id ? "Update" : "Add"}
+                  {tasks.id ? "Update" : "Add"}
                 </Button>
               </div>
             </div>

@@ -1,19 +1,16 @@
 "use client";
 
+import AddTasks from "@/components/AddTaskModal";
 import TableComponent from "@/components/tableComponent";
 import { Button } from "@mui/material";
 import React, { useState, useEffect } from "react";
 
-// import React, { useState, useEffect } from "react";
-// import TableComponent from "./components/tableComponent";
-// import AddExpenses from "./components/AddTaskModal";
-
-// interface T {
-//   id: string;
-//   title: string;
-//   amount: string;
-//   source: string;
-// }
+interface T {
+  id: string;
+  title: string;
+  amount: string;
+  source: string;
+}
 function App() {
   const [open, setOpen] = useState<boolean>(false);
   const [refetch, setRefetch] = useState<boolean>(false);
@@ -78,7 +75,7 @@ function App() {
 
         <Button
           sx={{ backgroundColor: "#272934", color: "#fff4a3" }}
-          // onClick={() => setOpen(true)}
+          onClick={() => setOpen(true)}
         >
           Add Tasks
         </Button>
@@ -93,15 +90,15 @@ function App() {
         />
       </div>
 
-      {/* {open && (
-        <AddExpenses
+      {open && (
+        <AddTasks
           open={open}
           handleClose={handleClose}
           setRefetch={setRefetch}
-          setExpensesInputs={setExpensesInputs}
-          expensesInputs={expensesInputs}
+          setTasks={setTasks}
+          tasks={tasks}
         />
-      )} */}
+      )}
     </div>
   );
 }
