@@ -46,7 +46,7 @@ function AddTasks({ open, handleClose, setTasks, tasks, setRefetch }: Props) {
           id: tasks.id,
           index: info[updateThis].index,
         };
-        localStorage.setItem("expenses", JSON.stringify(info));
+        localStorage.setItem("tasks", JSON.stringify(info));
         setTasks({});
         handleClose();
         setRefetch(true);

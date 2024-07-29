@@ -1,6 +1,7 @@
 "use client";
 
 import AddTasks from "@/components/AddTaskModal";
+import Header from "@/components/header";
 import TableComponent from "@/components/tableComponent";
 import { Button } from "@mui/material";
 import React, { useState, useEffect } from "react";
@@ -54,6 +55,7 @@ function App() {
 
   return (
     <div className="flex   min-h-screen gap-4 mt-20 gap-y-8 p-4 flex-col items-center w-full">
+      <Header />
       <div className="rounded-lg  flex flex-col md:flex-row gap-4 bg-[#949491] justify-between shadow-md p-6 w-full ">
         <div>
           <p className="text-secondary text-4xl font-semibold">My Taks</p>
@@ -61,7 +63,7 @@ function App() {
 
         <div className="w-1/2 justify-center flex ">
           <img
-            src="/images/tasks.jpeg"
+            src="./images/tasks1.jpeg"
             alt="tasks image"
             height={150}
             width={150}
